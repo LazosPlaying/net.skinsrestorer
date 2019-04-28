@@ -1,13 +1,21 @@
 <template>
-  <v-card>
-    <v-card-text>
-      Some text
-    </v-card-text>
-  </v-card>
+  <code style="width:100%;padding:1em;">{{ JSON.stringify(releases, null, 2) }}</code>
 </template>
 
 <script>
+import Store from '@/store'
+
 export default {
-  name: 'HomeRoute'
+  name: 'HomeRoute',
+  data: () => {return {
+
+  }},
+  computed: {
+    releases: () => Store.getters['App/allReleases'],
+  },
+  methods: {
+
+  },
+  mounted () { Store.dispatch('App/fetchAll') }
 }
 </script>

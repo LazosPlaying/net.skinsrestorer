@@ -10,6 +10,7 @@
     </v-content>
 
     <swUpdateSnackbar />
+    <Snackbars />
   </v-app>
 </template>
 
@@ -19,6 +20,7 @@ export default {
   components: {
     'Toolbar': () => import('./components/Toolbar'),
     'Sidebar': () => import('./components/Sidebar'),
+    'Snackbars': () => import('./components/Snackbars'),
     'swUpdateSnackbar': () => import('./components/SnackbarSwUpdated')
   },
   data () {
