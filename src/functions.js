@@ -9,22 +9,25 @@ const functions = {
     try {
       if (!url) throw new Error('The URL parameter is required!')
       
-      const addrAr = url.match(/((https?:\/\/)?([a-z0-9.-]*)\.([a-z0-9]{2,9})(:[0-9]{1,5})?([/#?]?(.*)))/ig)
+      const addrAr = url.match(/((https?:\/\/)?([a-z0-9.-]*)\.([a-z0-9]{2,9})(:[0-9]{1,5})?([/#?]?(.*)))/i)
       const addr = addrAr[2]+addrAr[3]+'.'+addrAr[4]
-      
-      const res = await axios.get(url, params)
-      if (res.status === 200) {
+
+      try {
+        const res = await axios.get(url, params)
+        if (res.status === 200) {
+          console.log(res)
+          return res
+          
+        }
         
-        return res
-        
-      } else {
-  
+      } catch (error) {
         Store.dispatch('Snacks/addSnack', {
-          msg: `Failed to fetch data from: ${addr} - HTTP-${res.status}`,
+          msg: `Failed to fetch data from: ${addr} - ${error}`,
           posx: 'left',
           btncolor: 'error'
         })
       }
+  
     } catch (error) {
       console.error(error)
       Store.dispatch('Snacks/addSnack', {

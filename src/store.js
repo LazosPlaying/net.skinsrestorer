@@ -25,7 +25,7 @@ const Snacks = {
       opt.left        = options.posx==='left'
       opt.bottom      = options.posy==='bottom'
       opt.top         = options.posy==='top'
-      opt.multiline   = options.mode==='multiline' || options.mode==='multi-line'
+      opt.multiline   = options.mode==='multiline' || options.mode==='multi-line' || options.msg.length > 50
       opt.vertical    = options.mode==='vertical'
       opt.color       = options.color || ( rootGetters['App/darkMode']===true ? 'dark' : 'white' )
       opt.textcolor   = options.textcolor || ( rootGetters['App/darkMode']===true ? 'white' : 'text--darken-3 grey' )
@@ -60,24 +60,20 @@ const App = {
   },
   mutations: {
     SET_RELEASES: (state, releases) => state.releases = releases,
+    SET_CONTRIBUTORS: (state, contributors) => state.contributors = contributors,
   },
   actions: {
     fetchAll: ({ dispatch }) => {
-      
-      dispatch('Snacks/addSnack', {
-        msg: 'Called fetchReleases',
-        posx: 'left',
-        btncolor: 'success'
-      }, {root: true})
-
       dispatch('fetchReleases')
       dispatch('fetchContributors')
     },
-    fetchReleases: async () => {
-      await func.httpGet('https://api.github.com/repos/SkinsRestorer/SkinsRestorerX/releases')
+    fetchReleases: async ({ commit }) => {
+      const data = await func.httpGet({url: 'https://api.github.com/repos/SkinsRestorer/SkinsRestorerX/releases'})
+      commit('SET_RELEASES', data.data)
     },
-    fetchContributors: async () => {
-      
+    fetchContributors: async ({ commit }) => {
+      const data = await func.httpGet({url: 'https://api.github.com/repos/SkinsRestorer/SkinsRestorerX/contributors'})
+      commit('SET_CONTRIBUTORS', data.data)
     }
   },
   getters: {
