@@ -6,5 +6,14 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: true
     }
-  }
+  },
+  pwa: {
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js',
+      importWorkboxFrom: 'local',
+      globStrict: true
+    },
+  },
 }

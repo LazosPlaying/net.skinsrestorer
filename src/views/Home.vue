@@ -1,13 +1,13 @@
 <template>
-  <HelloWorld />
+  <v-card>
+    <v-card-text>
+      Some text
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
-  export default {
-    components: {
-      HelloWorld
-    }
-  }
+export default {
+  name: 'HomeRoute'
+}
 </script>
