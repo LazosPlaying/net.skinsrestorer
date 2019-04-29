@@ -36,6 +36,11 @@ const functions = {
         btncolor: 'error'
       })
     }
+  },
+
+  firstCharCapitilize (string) {
+    if (!string) { console.error('The string parameter is missing!'); return '' }
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 }
 

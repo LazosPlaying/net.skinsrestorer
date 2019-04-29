@@ -50,8 +50,6 @@ const Snacks = {
   }
 }
 
-
-
 const App = {
   namespaced: true,
   state: {

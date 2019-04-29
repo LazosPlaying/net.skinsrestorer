@@ -1,21 +1,52 @@
 <template>
   <v-toolbar app>
-    <v-toolbar-title class="headline text-uppercase">
-      <span>Vuetify</span>
-      <span class="font-weight-light">MATERIAL DESIGN</span>
-    </v-toolbar-title>
+    <v-btn 
+      flat
+      exact
+      :to="{name: 'home'}"
+    >
+      <span>SkisnRestorer.net</span>
+    </v-btn>
     <v-spacer></v-spacer>
     <v-btn
       flat
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
+      exact
+      :to="latestHref"
     >
       <span class="mr-2">Latest Release</span>
+    </v-btn>
+    <v-btn
+      flat
+      :disabled="disabledReload"
+      @click.stop="fetchAll"
+    >
+      <v-icon>mdi-rotate-left</v-icon>
     </v-btn>
   </v-toolbar>
 </template>
 <script>
+import Store from '@/store'
 export default {
-  name: 'Toolbar'
+  name: 'Toolbar',
+  data: ()=>{return {
+    disabledReload: false
+  }},
+  computed: {
+    latestHref () {
+      return {
+        name: 'release',
+        params: {
+          node_id: Store.getters['App/latestRelease'] ? Store.getters['App/latestRelease'].node_id : ''
+        }
+      }
+    }
+  },
+  methods: {
+    fetchAll () {
+      this.disabledReload = true
+      setTimeout(() => this.disabledReload = false, 1000);
+      Store.dispatch('App/fetchAll')
+    }
+  },
 }
 </script>
