@@ -12,6 +12,7 @@
           :src="i.author.avatar_url"
           :lazy-src="'/img/transparent.svg'"
           aspect-ratio="1"
+          class="elevation-4 circle"
           style="height:43px;width:43px;"
         >
           <template v-slot:placeholder>
@@ -48,12 +49,15 @@
             outline
             exact
             color="info"
-          ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }}</v-btn>
+            class="elevation-3"
+          ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }} - {{ k.download_count }}</v-btn>
         </div>
       </v-card-title>
-      <v-card-text>
-        
-      </v-card-text>
+      <v-card-text v-html="
+        i.body.length > 500 ? 
+          i.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`).slice(0, 500)+' ...' :
+          i.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)
+      "></v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
@@ -62,11 +66,9 @@
           exact
           :to="{name:'release',params:{node_id: i.node_id}}"
           color="success"
-        >READ MORE</v-btn>
+          class="elevation-3"
+        >READ MORE<v-icon class="ml-1">mdi-arrow-right</v-icon></v-btn>
       </v-card-actions>
-    </v-card>
-    <v-card>
-      <code style="width:100%;padding:1em;">{{ JSON.stringify(releases, null, 2) }}</code>
     </v-card>
   </div>
 </template>
@@ -84,8 +86,7 @@ export default {
   },
   methods: {
 
-  },
-  mounted () { Store.dispatch('App/fetchAll') }
+  }
 }
 </script>
 <style>

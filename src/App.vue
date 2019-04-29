@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import Store from '@/store'
+
 export default {
   name: 'App',
   components: {
@@ -29,7 +31,8 @@ export default {
     return {
       appDark: false
     }
-  }
+  },
+  mounted () { Store.dispatch('App/fetchAll') }
 }
 </script>
 <style>
@@ -43,7 +46,7 @@ export default {
 }
 .background::before {
   content: ' ';
-  margin-top: -12vh;
+  margin-bottom: -12vh;
   width: 100vw;
   height: 112vh;
 

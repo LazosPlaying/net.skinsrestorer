@@ -12,7 +12,7 @@ export default new Router({
       component: () => import('./views/Home')
     },
     {
-      path: '/release/:node_id/',
+      path: '/release/:node_id',
       name: 'release',
       component: () => import('./views/Release')
     }
