@@ -7,13 +7,13 @@
     </v-card>
     <v-card v-if="!!release">
       <v-card-title>
-        <span class="mr-1">
+        <span class="mr-2">
           <v-img
           :src="release.author.avatar_url"
           :lazy-src="'/img/transparent.svg'"
           aspect-ratio="1"
           class="elevation-4 circle"
-          style="height:43px;width:43px;"
+          style="height:50px;width:50px;"
         >
           <template v-slot:placeholder>
             <v-layout

@@ -15,13 +15,32 @@
     >
       <span class="mr-2">Latest Release</span>
     </v-btn>
-    <v-btn
-      flat
-      :disabled="disabledReload"
-      @click.stop="fetchAll"
-    >
-      <v-icon>mdi-rotate-left</v-icon>
-    </v-btn>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          flat
+          :disabled="disabledReload"
+          @click.stop="fetchAll"
+          v-on="on"
+        >
+          <v-icon>mdi-rotate-left</v-icon>
+        </v-btn>
+      </template>
+      <span>Update data</span>
+    </v-tooltip>
+    <v-tooltip bottom>
+      <template v-slot:activator="{ on }">
+        <v-btn
+          flat
+          @click.stop="toggleDarkMode"
+          v-on="on"
+        >
+          <v-icon v-if="appDark">mdi-weather-night</v-icon>
+          <v-icon v-else>mdi-weather-sunny</v-icon>
+        </v-btn>
+      </template>
+      <span>Toggle dark mode</span>
+    </v-tooltip>
   </v-toolbar>
 </template>
 <script>
@@ -32,6 +51,7 @@ export default {
     disabledReload: false
   }},
   computed: {
+    appDark: () => Store.getters['App/darkMode'],
     latestHref () {
       return {
         name: 'release',
@@ -42,6 +62,9 @@ export default {
     }
   },
   methods: {
+    toggleDarkMode () {
+      Store.dispatch('App/setDarkMode', !this.appDark)
+    },
     fetchAll () {
       this.disabledReload = true
       setTimeout(() => this.disabledReload = false, 1000);

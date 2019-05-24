@@ -7,13 +7,13 @@
 
     >
       <v-card-title>
-        <span class="mr-1">
+        <span class="mr-2">
           <v-img
           :src="i.author.avatar_url"
           :lazy-src="'/img/transparent.svg'"
           aspect-ratio="1"
           class="elevation-4 circle"
-          style="height:43px;width:43px;"
+          style="height:50px;width:50px;"
         >
           <template v-slot:placeholder>
             <v-layout
@@ -45,7 +45,6 @@
             v-if="!k.browser_download_url ? false : k.browser_download_url.endsWith('.jar')"
             :href="i.assets[0].browser_download_url"
             flat
-            small
             outline
             exact
             color="info"
@@ -58,7 +57,7 @@
           i.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`).slice(0, 500)+' ...' :
           i.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)
       "></v-card-text>
-      <v-card-actions>
+      <v-card-actions class="pa-3">
         <v-spacer></v-spacer>
         <v-btn
           flat
@@ -66,7 +65,7 @@
           exact
           :to="{name:'release',params:{node_id: i.node_id}}"
           color="success"
-          class="elevation-3"
+          class="elevation-3 ma-2"
         >READ MORE<v-icon class="ml-1">mdi-arrow-right</v-icon></v-btn>
       </v-card-actions>
     </v-card>

@@ -29,8 +29,11 @@ export default {
   },
   data () {
     return {
-      appDark: false
+      // 
     }
+  },
+  computed: {
+    appDark: () => Store.getters['App/darkMode']
   },
   mounted () { Store.dispatch('App/fetchAll') }
 }

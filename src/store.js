@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import func from './functions'
+import createPersistedState from 'vuex-persistedstate'
+
 
 Vue.use(Vuex)
 
@@ -54,11 +56,13 @@ const App = {
   namespaced: true,
   state: {
     releases: [],
-    contributors: []
+    contributors: [],
+    darkmode: false,
   },
   mutations: {
     SET_RELEASES: (state, releases) => state.releases = releases,
     SET_CONTRIBUTORS: (state, contributors) => state.contributors = contributors,
+    SET_DARKMODE: (state, mode) => state.darkmode = mode,
   },
   actions: {
     fetchAll: ({ dispatch }) => {
@@ -72,11 +76,15 @@ const App = {
     fetchContributors: async ({ commit }) => {
       const data = await func.httpGet({url: 'https://api.github.com/repos/SkinsRestorer/SkinsRestorerX/contributors'})
       commit('SET_CONTRIBUTORS', data.data)
-    }
+    },
+    setDarkMode: ( { commit }, mode ) => {
+      commit('SET_DARKMODE', mode)
+    },
   },
   getters: {
     allReleases: state => state.releases,
-    latestRelease: state => state.releases[0] || null
+    latestRelease: state => state.releases[0] || null,
+    darkMode: state => state.darkmode,
   }
 }
 
@@ -95,4 +103,5 @@ export default new Vuex.Store({
   actions: {
 
   },
+  plugins: [createPersistedState()],
 })
