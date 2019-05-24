@@ -54,14 +54,14 @@
         </div>
       </v-card-title>
       <v-card-text v-html="release.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)"></v-card-text>
-      <v-card-actions>
+      <v-card-actions class="pa-3">
         <v-btn
           flat
           outline
           exact
           :to="{name:'home'}"
           color="success"
-          class="elevation-3"
+          class="elevation-3 ma-2"
         ><v-icon class="mr-1">mdi-arrow-left</v-icon>BACK HOME</v-btn>
       </v-card-actions>
     </v-card>
