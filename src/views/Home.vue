@@ -53,8 +53,7 @@
         </div>
       </v-card-title>
       <v-card-text 
-        v-html="markdown2html(i.body)"
-        style="max-height:200px;"
+        v-html="markdown2html(i.body, 200).html"
       ></v-card-text>
       <v-card-actions class="pa-3">
         <v-spacer></v-spacer>
@@ -73,7 +72,8 @@
 
 <script>
 import showdown from 'showdown'
-import Store from '@/store'
+import trimhtml from '../plugins/trimhtml'
+import Store from '../store'
 
 export default {
   name: 'HomeRoute',
@@ -84,9 +84,11 @@ export default {
     releases: () => Store.getters['App/allReleases'],
   },
   methods: {
-    markdown2html: (md) => {
+    markdown2html: (md, limit = 200) => {
       const converter = new showdown.Converter()
-      return converter.makeHtml(md)
+      const html = converter.makeHtml(md)
+      const trimmedHtml = trimhtml(html, { limit: limit })
+      return trimmedHtml
     }
   }
 }
