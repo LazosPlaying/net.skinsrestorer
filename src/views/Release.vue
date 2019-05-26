@@ -53,7 +53,8 @@
           ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }} - {{ k.download_count }}</v-btn>
         </div>
       </v-card-title>
-      <v-card-text v-html="release.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)"></v-card-text>
+      <!-- <v-card-text v-html="release.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)"></v-card-text> -->
+      <v-card-text v-html="markdown2html(release.body)"></v-card-text>
       <v-card-actions class="pa-3">
         <v-btn
           flat
@@ -63,11 +64,21 @@
           color="success"
           class="elevation-3 ma-2"
         ><v-icon class="mr-1">mdi-arrow-left</v-icon>BACK HOME</v-btn>
+        <v-btn
+          flat
+          outline
+          exact
+          color="grey lighten-1"
+          class="elevation-3 ma-2 square"
+          :href="release.html_url"
+          target="_blank"
+        ><v-icon>mdi-github-circle</v-icon></v-btn>
       </v-card-actions>
     </v-card>
   </div>
 </template>
 <script>
+import showdown from 'showdown'
 import Store from '@/store'
 import { clearInterval } from 'timers';
 
@@ -75,14 +86,23 @@ export default {
   name: 'Release',
   data: ()=>{return {
 
-}},
+  }},
   computed: {
     release () {
       return Store.getters['App/allReleases'].find(el => {return el.node_id === this.$route.params.node_id }) || false
     }
+  },
+  methods: {
+    markdown2html: (md) => {
+      const converter = new showdown.Converter()
+      return converter.makeHtml(md)
+    }
   }
 }
 </script>
-<style>
-
+<style scoped>
+.v-btn.square {
+  padding: 0 8px;
+  min-width: unset;
+}
 </style>
