@@ -80,7 +80,6 @@
 <script>
 import showdown from 'showdown'
 import Store from '@/store'
-import { clearInterval } from 'timers';
 
 export default {
   name: 'Release',
