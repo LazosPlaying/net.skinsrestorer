@@ -53,7 +53,6 @@
           ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }} - {{ k.download_count }}</v-btn>
         </div>
       </v-card-title>
-      <!-- <v-card-text v-html="release.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)"></v-card-text> -->
       <v-card-text v-html="markdown2html(release.body)"></v-card-text>
       <v-card-actions class="pa-3">
         <v-btn
