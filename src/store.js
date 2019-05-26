@@ -84,6 +84,7 @@ const App = {
   getters: {
     allReleases: state => state.releases,
     latestRelease: state => state.releases[0] || null,
+    allContributors: state => state.contributors,
     darkMode: state => state.darkmode,
   }
 }

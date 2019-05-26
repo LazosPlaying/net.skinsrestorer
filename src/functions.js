@@ -5,6 +5,9 @@ import Store from './store'
 
 const functions = {
   
+  /**
+   * @param {{url: String, params: {} }}
+   */
   httpGet: async ({url, params}) => {
     try {
       if (!url) throw new Error('The URL parameter is required!')
