@@ -52,11 +52,10 @@
           ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }} - {{ k.download_count }}</v-btn>
         </div>
       </v-card-title>
-      <v-card-text v-html="
-        i.body.length > 500 ? 
-          i.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`).slice(0, 500)+' ...' :
-          i.body.replace(/^\\r\\n|\\r|\\n|[\n\r]$/gm, `<br>`)
-      "></v-card-text>
+      <v-card-text 
+        v-html="markdown2html(i.body)"
+        style="max-height:200px;"
+      ></v-card-text>
       <v-card-actions class="pa-3">
         <v-spacer></v-spacer>
         <v-btn
@@ -73,6 +72,7 @@
 </template>
 
 <script>
+import showdown from 'showdown'
 import Store from '@/store'
 
 export default {
@@ -84,7 +84,10 @@ export default {
     releases: () => Store.getters['App/allReleases'],
   },
   methods: {
-
+    markdown2html: (md) => {
+      const converter = new showdown.Converter()
+      return converter.makeHtml(md)
+    }
   }
 }
 </script>
