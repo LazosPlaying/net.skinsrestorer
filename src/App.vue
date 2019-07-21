@@ -60,20 +60,10 @@ export default {
 
   background-size: cover;
   background-repeat: no-repeat;
+  background-image: url("/img/background.jpg"), url("/img/background-10percent.jpg");
 }
-#app.background.theme--dark::before {
-  background: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.7), 
-      rgba(0, 0, 0, 0.7)
-    ),
-    url("/img/background.jpg"), 
-    url("/img/background-10percent.jpg");
-}
-#app.background.theme--light::before {
-  background: 
-    url("/img/background.jpg"), 
-    url("/img/background-10percent.jpg");
+.background.theme--dark::before {
+  filter: brightness(60%);
 }
 </style>
 
