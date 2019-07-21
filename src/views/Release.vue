@@ -71,7 +71,7 @@
           class="elevation-3 ma-2 square"
           :href="release.html_url"
           target="_blank"
-        ><v-icon>mdi-github-circle</v-icon></v-btn>
+        ><v-icon class="mr-1">mdi-github-circle</v-icon>VIEW ON GITHUB</v-btn>
       </v-card-actions>
     </v-card>
   </div>
