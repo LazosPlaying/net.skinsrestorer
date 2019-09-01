@@ -5,7 +5,7 @@
       exact
       :to="{name: 'home'}"
     >
-      <span>SkisnRestorer.net</span>
+      <span>SkinsRestorer.net</span>
     </v-btn>
     <v-spacer></v-spacer>
     <v-btn
