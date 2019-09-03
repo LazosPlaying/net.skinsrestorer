@@ -13,6 +13,8 @@
   "dependencies": {
     "axios": "^0.18.1",
     "core-js": "^2.6.9",
+    "eslint-utils": "^1.4.2",
+    "lodash": "^4.17.15",
     "register-service-worker": "^1.6.2",
     "showdown": "^1.9.0",
     "vue": "^2.6.10",
