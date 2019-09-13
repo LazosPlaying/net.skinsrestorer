@@ -5,7 +5,8 @@
       exact
       :to="{name: 'home'}"
     >
-      <span>SkinsRestorer.net</span>
+      <v-icon v-if="$vuetify.breakpoint.xsOnly">mdi-home</v-icon>
+      <span v-else>SkinsRestorer.net</span>
     </v-btn>
     <v-spacer></v-spacer>
     <v-btn
