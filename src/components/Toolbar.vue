@@ -9,6 +9,7 @@
     </v-btn>
     <v-spacer></v-spacer>
     <v-btn
+      v-if="$vuetify.breakpoint.mdAndUp"
       flat
       exact
       :to="latestHref"
