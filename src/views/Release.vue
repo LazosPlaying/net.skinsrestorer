@@ -50,7 +50,7 @@
             exact
             color="info"
             class="elevation-3"
-          ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }} - {{ k.download_count }}</v-btn>
+          ><v-icon class="mr-1">mdi-cloud-download</v-icon>{{ k.name }} - {{ String(k.download_count).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') }}</v-btn>
         </div>
       </v-card-title>
       <v-card-text v-html="markdown2html(release.body)"></v-card-text>
