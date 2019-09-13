@@ -33,7 +33,7 @@
           >{{ i.name }}</span>
           <br>
           <span style="font-weight:500;font-size:small;">
-            <a :href="i.author.html_url">{{ i.author.login }}</a> published <timeago :datetime="i.published_at"></timeago>
+            <a :href="i.author.html_url" target="_blank">{{ i.author.login }}</a> published <timeago :datetime="i.published_at"></timeago>
           </span>
         </span>
         <v-spacer></v-spacer>

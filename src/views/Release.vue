@@ -33,7 +33,7 @@
           >{{ release.name }}</span>
           <br>
           <span style="font-weight:500;font-size:small;">
-            <a :href="release.author.html_url">{{ release.author.login }}</a> published <timeago :datetime="release.published_at"></timeago>
+            <a :href="release.author.html_url" target="_blank">{{ release.author.login }}</a> published <timeago :datetime="release.published_at"></timeago>
           </span>
         </span>
         <v-spacer></v-spacer>
